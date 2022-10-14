@@ -1,0 +1,39 @@
+service: sbf
+frameworkVersion: ">=1.50.0 <2.0.0"
+provider:
+  name: aws
+  runtime: nodejs12.x
+  timeout: 30
+  memorySize: 512
+  stage: ${opt:stage, 'dev'}
+  region: us-east-1
+  useDotenv: true
+  iamRoleStatements:
+    - Effect: Allow
+      Action:
+        - dynamodb:DescribeTable
+        - dynamodb:Query
+        - dynamodb:GetItem
+        - dynamodb:PutItem
+        - dynamodb:UpdateItem
+        - dynamodb:DeleteItem
+        - dynamodb:BatchWriteItem
+        - dynamodb:CreateTable
+        - dynamodb:DescribeStream
+        - dynamodb:GetRecords
+        - dynamodb:GetShardIterator
+        - dynamodb:ListStreams
+        - dynamodb:Scan
+      Resource: arn:aws:dynamodb:#{AWS::Region}:#{AWS::AccountId}:table/*
+  environment:
+    STAGE: ${self:provider.stage}
+
+plugins:
+  - serverless-plugin-typescript
+  - serverless-offline
+  - serverless-dotenv-plugin
+
+custom:
+  funcDir: src/4-framework/functions
+  baseApi: sbf/v1
+  baseApiInternal: api/v1
