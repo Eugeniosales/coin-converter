@@ -1,5 +1,5 @@
 variable "ENV" {
-  type = string
+  type        = string
   description = "Environment"
-  default = null
+  default     = null
 }
