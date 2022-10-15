@@ -1,4 +1,4 @@
-export interface IExchangeRateResponse {
+export interface ILatestRatesResponse {
   success: boolean
   timestamp: number
   base: string
