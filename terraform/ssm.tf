@@ -8,5 +8,5 @@ resource "aws_ssm_parameter" "update-exchange-rate-queue-arn-ssm" {
 resource "aws_ssm_parameter" "exchange-rate-api-token-ssm" {
   name  = "/exchangeRate/infra/api/exchangeRate/token"
   type  = "String"
-  value = ""
+  value = "custom"
 }
