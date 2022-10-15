@@ -1,0 +1,7 @@
+updateExchangeRate:
+  handler: ${self:custom.funcDir}/exchangeRate/updateExchangeRate.handler
+  timeout: 30
+  events:
+    - sqs:
+        arn: ${self:provider.environment.SQS_UPDATE_EXCHANGE_RATE_ARN}
+        batchSize: 1
