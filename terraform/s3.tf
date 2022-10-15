@@ -6,8 +6,3 @@ resource "aws_s3_bucket" "sbf-sls-artifacts" {
     Environment = "${var.ENV}"
   }
 }
-
-resource "aws_s3_bucket_acl" "example" {
-  bucket = aws_s3_bucket.sbf-sls-artifacts.id
-  acl    = "private"
-}
