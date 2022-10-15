@@ -1,9 +1,9 @@
-import { ExchangeRate } from '../../../src/1-domain/entities/exchangeRate'
-import { IExchangeRateResponse } from '../../../src/1-domain/models/iExchangeRateResponse'
-import { UpdateExchangeRateUseCase } from '../../../src/2-business/useCases/exchangeRate/updateExchangeRateUseCase'
-import { IExchangeRateRepository } from '../../../src/2-business/repositories/iExchangeRateRepository'
-import { IExchangeRateService } from '../../../src/2-business/services/iExchangeRateService'
-import { CurrencyEnum } from '../../../src/2-business/enums/currencyEnum'
+import { ExchangeRate } from '../../../../src/1-domain/entities/exchangeRate'
+import { ILatestRatesResponse } from '../../../../src/1-domain/models/iExchangeRateResponse'
+import { UpdateExchangeRateUseCase } from '../../../../src/2-business/useCases/exchangeRate/updateExchangeRateUseCase'
+import { IExchangeRateRepository } from '../../../../src/2-business/repositories/iExchangeRateRepository'
+import { IExchangeRateService } from '../../../../src/2-business/services/iExchangeRateService'
+import { CurrencyEnum } from '../../../../src/2-business/enums/currencyEnum'
 
 describe('UpdateExchangeRateUseCase', () => {
   const exchangeRateMock: ExchangeRate = {
@@ -19,7 +19,7 @@ describe('UpdateExchangeRateUseCase', () => {
     }
   }
 
-  const exchangeRateResponseMock: IExchangeRateResponse = {
+  const exchangeRateResponseMock: ILatestRatesResponse = {
     success: true,
     timestamp: 1519296206,
     base: 'BRL',
@@ -40,10 +40,10 @@ describe('UpdateExchangeRateUseCase', () => {
 
   const setMocks = () => {
     exchangeRateRepository = {
-      create: jest.fn().mockResolvedValue(null)
+      upsert: jest.fn().mockResolvedValue(null)
     }
     exchangeRateService = {
-      get: jest.fn().mockResolvedValue(exchangeRateResponseMock)
+      getLatestRates: jest.fn().mockResolvedValue(exchangeRateResponseMock)
     }
   }
 
@@ -58,13 +58,13 @@ describe('UpdateExchangeRateUseCase', () => {
 		)
 
     await expect(useCase.execute()).resolves.not.toThrow()
-    expect(exchangeRateService.get).toHaveBeenCalledWith(CurrencyEnum.BRL)
-    expect(exchangeRateRepository.create).toHaveBeenCalledWith(exchangeRateMock)
+    expect(exchangeRateService.getLatestRates).toHaveBeenCalledWith(CurrencyEnum.BRL)
+    expect(exchangeRateRepository.upsert).toHaveBeenCalledWith(exchangeRateMock)
   })
 
   test('Failure::should throw error when exchange rate service fails', async () => {
     exchangeRateService = {
-      get: jest.fn().mockRejectedValue(new Error())
+      getLatestRates: jest.fn().mockRejectedValue(new Error())
     }
 
     const useCase = new UpdateExchangeRateUseCase(
