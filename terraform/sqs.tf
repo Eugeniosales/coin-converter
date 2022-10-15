@@ -18,7 +18,7 @@ resource "aws_sqs_queue_policy" "update-exchange-rate-queue-policy" {
 				"Service": "events.amazonaws.com"
 			},
       "Action": "sqs:SendMessage",
-      "Resource": "${aws_sqs_queue.update_transaction_by_fuelling_partner_queue.arn}",
+      "Resource": "${aws_sqs_queue.update-exchange-rate-queue.arn}",
     }
   ]
 }
