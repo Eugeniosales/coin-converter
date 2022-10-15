@@ -1,7 +1,7 @@
 resource "aws_ssm_parameter" "update-exchange-rate-queue-arn-ssm" {
   name = "/exchangeRate/infra/sqs/updateExchangeRateQueueArn"
   type = "String"
-  value = aws_sqs_queue.shell_credits_refund_queue.arn
+  value = aws_sqs_queue.update-exchange-rate-queue.arn
   overwrite = true
 }
 
