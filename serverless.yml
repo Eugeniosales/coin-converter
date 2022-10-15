@@ -2,13 +2,23 @@ service: sbf
 frameworkVersion: ">=1.50.0 <2.0.0"
 provider:
   name: aws
-  runtime: nodejs12.x
+  runtime: nodejs14.x
   timeout: 30
   memorySize: 512
   stage: ${opt:stage, 'dev'}
   region: us-east-1
+  deploymentBucket:
+    name: sbf-sls-artifacts-custom-test-${self:provider.stage}
   useDotenv: true
   iamRoleStatements:
+    - Effect: Allow
+      Action:
+        - 'ssm:GetParameter'
+        - 'ssm:GetParameters'
+        - 'ssm:GetParameterHistory'
+        - 'ssm:GetParametersByPath'
+        - 'ssm:DescribeParameters'
+      Resource: "*"
     - Effect: Allow
       Action:
         - dynamodb:DescribeTable
@@ -24,16 +34,25 @@ provider:
         - dynamodb:GetShardIterator
         - dynamodb:ListStreams
         - dynamodb:Scan
-      Resource: arn:aws:dynamodb:#{AWS::Region}:#{AWS::AccountId}:table/*
+      Resource: "*"
   environment:
-    STAGE: ${self:provider.stage}
+    STAGE: "${self:provider.stage}"
+    SQS_UPDATE_EXCHANGE_RATE_ARN: ${ssm:/exchangeRate/infra/sqs/updateExchangeRateQueueArn}
+    EXCHANGE_RATE_API_KEY: ${ssm:/exchangeRate/infra/api/exchangeRate/token}
 
 plugins:
   - serverless-plugin-typescript
   - serverless-offline
-  - serverless-dotenv-plugin
+  - serverless-dynamodb-local
 
 custom:
   funcDir: src/4-framework/functions
   baseApi: sbf/v1
   baseApiInternal: api/v1
+  serverless-offline:
+    port: 4000
+    stage: dev
+
+functions:
+  # Exchange Rate
+  - ${file(${self:custom.funcDir}/exchangeRate/_handlers.yml)}

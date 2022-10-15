@@ -7,7 +7,8 @@
     "lint": "tslint --project tsconfig.json -t verbose",
     "lint-fix": "tslint --fix src/**/*.ts test/**/*.ts -t verbose",
     "test": "jest",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "deploy": "clear && sls deploy --verbose"
   },
   "devDependencies": {
     "@commitlint/cli": "^11.0.0",
@@ -38,7 +39,8 @@
     "ts-node-dev": "^1.1.8",
     "tslint": "^6.1.3",
     "tslint-config-standard": "^9.0.0",
-    "typescript": "^4.8.4"
+    "typescript": "^4.8.4",
+    "serverless-dynamodb-local": "^0.2.40"
   },
   "dependencies": {
     "aws-lambda": "^1.0.7",
@@ -46,7 +48,7 @@
     "axios": "^0.25.0",
     "cors": "^2.8.5",
     "dotenv": "^16.0.0",
-    "dynamoose": "^1.11.1",
+    "dynamoose": "^2.8.5",
     "ts-node": "^10.7.0"
   }
 }
