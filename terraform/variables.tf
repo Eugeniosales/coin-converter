@@ -30,13 +30,3 @@ variable "aws_profile" {
   description = "AWS Profile"
   default = null
 }
-
-variable "route53_zone_host" {
-  type = string
-  description = "Route53 Zone Host"
-}
-
-data "aws_route53_zone" "selected" {
-  name = var.route53_zone_host
-  private_zone = true
-}

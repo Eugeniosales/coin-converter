@@ -23,3 +23,13 @@ terraform {
 provider "aws" {
   region = "us-east-1"
 }
+
+variable "route53_zone_host" {
+  type = string
+  description = "Route53 Zone Host"
+}
+
+data "aws_route53_zone" "selected" {
+  name = var.route53_zone_host
+  private_zone = true
+}
