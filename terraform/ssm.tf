@@ -11,3 +11,10 @@ resource "aws_ssm_parameter" "exchange-rate-api-token-ssm" {
   value = "custom"
   overwrite = true
 }
+
+resource "aws_ssm_parameter" "exchange-rate-internal-url-ssm" {
+  name  = "/exchangerate/infra/alb/arn"
+  type  = "String"
+  value = "${var.EXCHANGE_RATE_INTERNAL_URL}"
+  overwrite = true
+}
