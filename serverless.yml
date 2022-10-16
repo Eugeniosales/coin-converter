@@ -39,6 +39,7 @@ provider:
     STAGE: "${self:provider.stage}"
     SQS_UPDATE_EXCHANGE_RATE_ARN: ${ssm:/exchangeRate/infra/sqs/updateExchangeRateQueueArn}
     EXCHANGE_RATE_API_KEY: ${ssm:/exchangeRate/infra/api/exchangeRate/token}
+    EXCHANGE_RATE_INTERNAL_ALB_URL: ${ssm:/exchangeRate/infra/alb/exchangeRate/http/url}
 
 plugins:
   - serverless-plugin-typescript

@@ -4,7 +4,7 @@ import { CurrencyEnum } from '../../2-business/enums/currencyEnum'
 import axios, { AxiosResponse } from 'axios'
 
 export class ExchangeRateInternalService implements IExchangeRateInternalService {
-  private readonly baseUrl = 'https://internal-sbf-exchangerate-dev-lb-431495913.us-east-1.elb.amazonaws.com'
+  private readonly baseUrl = process.env.EXCHANGE_RATE_INTERNAL_ALB_URL
 
   async get (base: CurrencyEnum): Promise<ExchangeRate> {
     const logPrefix = 'get'
