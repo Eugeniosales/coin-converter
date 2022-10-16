@@ -12,9 +12,9 @@ resource "aws_ssm_parameter" "exchange-rate-api-token-ssm" {
   overwrite = true
 }
 
-resource "aws_ssm_parameter" "exchange-rate-internal-ssm" {
+resource "aws_ssm_parameter" "exchange-rate-internal-url-ssm" {
   name  = "/exchangerate/infra/alb/arn"
   type  = "String"
-  value = "http://api.sbf.exchangerate.internal.com"
+  value = "${var.EXCHANGE_RATE_INTERNAL_URL}"
   overwrite = true
 }
