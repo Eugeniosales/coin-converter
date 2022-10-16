@@ -11,3 +11,17 @@ resource "aws_ssm_parameter" "exchange-rate-api-token-ssm" {
   value = "custom"
   overwrite = true
 }
+
+resource "aws_ssm_parameter" "exchange-rate-application-load-balancer-http-arn" {
+  name      = "/exchangeRate/infra/alb/exchangeRate/http/arn"
+  type      = "String"
+  value     = aws_lb_listener.http-lb-sbf-exchangerate.arn
+  overwrite = true
+}
+
+resource "aws_ssm_parameter" "exchange-rate-application-load-balancer-http-url-ssm" {
+  name = "/exchangeRate/infra/alb/exchangeRate/http/arn"
+  type = "String"
+  value = var.base_url_internal
+  overwrite = true
+}
