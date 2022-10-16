@@ -6,7 +6,7 @@ import { GetExchangeRateInputDto } from '../../../../src/2-business/dto/exchange
 
 describe('GetExchangeRateUseCase', () => {
   const exchangeRateMock: ExchangeRate = {
-    baseCurrency: 'BRL',
+    baseCurrency: CurrencyEnum.BRL,
     rates: {
       'AUD': 1.566015,
       'CAD': 1.560132,
@@ -19,7 +19,7 @@ describe('GetExchangeRateUseCase', () => {
   }
 
   const mockInput: GetExchangeRateInputDto = {
-    base: CurrencyEnum.BRL
+    baseCurrency: CurrencyEnum.BRL
   }
 
   let exchangeRateRepository: IExchangeRateRepository
@@ -56,6 +56,6 @@ describe('GetExchangeRateUseCase', () => {
 			exchangeRateRepository
 		)
 
-    await expect(useCase.execute({ base: CurrencyEnum.USD })).rejects.toThrow()
+    await expect(useCase.execute({ baseCurrency: CurrencyEnum.USD })).rejects.toThrow()
   })
 })
