@@ -32,7 +32,7 @@ resource "aws_dynamodb_table" "product" {
 
   global_secondary_index {
     name               = "CategoryBaseCurrencyIndex"
-    hash_key           = "Category"
+    hash_key           = "category"
     range_key          = "baseCurrency"
     projection_type    = "ALL"
   }
