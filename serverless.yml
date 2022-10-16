@@ -49,6 +49,7 @@ custom:
   funcDir: src/4-framework/functions
   baseApi: sbf/v1
   baseApiInternal: api/v1
+  albHttpListenerArn: ${ssm:/exchangerate/infra/alb/arn}
   serverless-offline:
     port: 4000
     stage: dev

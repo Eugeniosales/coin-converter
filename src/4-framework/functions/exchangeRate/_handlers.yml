@@ -5,3 +5,17 @@ updateExchangeRate:
     - sqs:
         arn: ${self:provider.environment.SQS_UPDATE_EXCHANGE_RATE_ARN}
         batchSize: 1
+
+getExchangeRate:
+  handler: ${self:custom.funcDir}/exchangeRate/getExchangeRate.handler
+  events:
+    - alb:
+        listenerArn: ${self:custom.albHttpListenerArn}
+        priority: 1
+        conditions:
+          method: GET
+          path: /${self:custom.baseApi}/exchangerate
+          request:
+            parameters:
+              querystrings:
+                baseCurrency: true
