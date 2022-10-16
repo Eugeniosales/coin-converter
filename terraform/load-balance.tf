@@ -1,7 +1,9 @@
 resource "aws_lb" "lb-sbf-exchangerate" {
   name               = "sbf-exchangerate-${var.aws_profile}-lb"
-  internal           = false
+  internal           = true
   load_balancer_type = "application"
+  security_groups    = [aws_security_group.lb.id]
+  subnets            = [var.SUB_NET_01, var.SUB_NET_02]
 
   ip_address_type = "ipv4"
 
