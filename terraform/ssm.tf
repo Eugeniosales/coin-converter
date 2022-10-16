@@ -22,6 +22,6 @@ resource "aws_ssm_parameter" "exchange-rate-application-load-balancer-http-arn" 
 resource "aws_ssm_parameter" "exchange-rate-application-load-balancer-http-url-ssm" {
   name = "/exchangeRate/infra/alb/exchangeRate/http/url"
   type = "String"
-  value = var.base_url_internal
+  value = "http://${aws_lb_listener.http-lb-sbf-exchangerate.dns_name}"
   overwrite = true
 }
