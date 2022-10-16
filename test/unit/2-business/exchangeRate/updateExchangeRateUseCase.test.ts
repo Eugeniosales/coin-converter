@@ -40,7 +40,8 @@ describe('UpdateExchangeRateUseCase', () => {
 
   const setMocks = () => {
     exchangeRateRepository = {
-      upsert: jest.fn().mockResolvedValue(null)
+      upsert: jest.fn().mockResolvedValue(null),
+      get: jest.fn()
     }
     exchangeRateService = {
       getLatestRates: jest.fn().mockResolvedValue(exchangeRateResponseMock)
