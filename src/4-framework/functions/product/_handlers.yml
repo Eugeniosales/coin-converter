@@ -1,0 +1,12 @@
+getProducts:
+  handler: ${self:custom.funcDir}/product/getProducts.handler
+  vpc:
+    securityGroupIds:
+      - sg-0cd52ea46933db116
+    subnetdIds:
+      - subnet-05d245e39491bb3d2
+      - subnet-06761316782230c98
+  events:
+    - http:
+        method: GET
+        path: /${self:custom.baseApi}/products
