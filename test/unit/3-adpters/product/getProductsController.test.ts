@@ -32,7 +32,7 @@ describe('GetProductsController', () => {
       promotionalPrice: 529.99,
       rating: 540,
       colors: ['red', 'pink', 'gray'],
-      imageUrl: 'https://url.com',
+      imageUrl: 'http://url.com',
       currency: CurrencyEnum.BRL
     }
   ]

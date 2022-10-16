@@ -31,7 +31,7 @@ describe('UpdateExchangeRateUseCase', () => {
       promotionalPrice: 529.99,
       rating: 540,
       colors: ['red', 'pink', 'gray'],
-      imageUrl: 'https://url.com',
+      imageUrl: 'http://url.com',
       currency: CurrencyEnum.BRL
     }
   ]
@@ -45,7 +45,7 @@ describe('UpdateExchangeRateUseCase', () => {
       promotionalPrice: 529.99 * 0.187786,
       rating: 540,
       colors: ['red', 'pink', 'gray'],
-      imageUrl: 'https://url.com',
+      imageUrl: 'http://url.com',
       currency: CurrencyEnum.BRL
     }
   ]
