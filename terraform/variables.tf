@@ -20,13 +20,14 @@ variable "SUB_NET_02" {
   default     = null
 }
 
-variable "base_url_internal" {
-  type = string
-  description = "base url internal for exchange rate microsservice"
-}
-
 variable "aws_profile" {
   type = string
   description = "AWS Profile"
   default = null
+}
+
+variable "SG_ID" {
+  type        = string
+  description = "security group id"
+  default     = null
 }
