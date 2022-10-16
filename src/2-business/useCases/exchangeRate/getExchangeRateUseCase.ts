@@ -15,8 +15,8 @@ export class GetExchangeRateUseCase {
   async execute (input: GetExchangeRateInputDto): Promise<ExchangeRate> {
     console.log(`${this.logPrefix} :: start`)
     try {
-      const { base } = input
-      const exchangeRate: ExchangeRate = await this.exchangeRateRepository.get(base)
+      const { baseCurrency } = input
+      const exchangeRate: ExchangeRate = await this.exchangeRateRepository.get(baseCurrency)
 
       if (!exchangeRate) {
         throw new ExchangeRateError(exchangeRateNotFoundError)
