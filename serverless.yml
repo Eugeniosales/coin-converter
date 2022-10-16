@@ -47,7 +47,7 @@ plugins:
 
 custom:
   funcDir: src/4-framework/functions
-  baseApi: sbf/v1
+  baseApi: api/v1/sbf
   baseApiInternal: api/v1
   albHttpListenerArn: ${ssm:/exchangeRate/infra/alb/exchangeRate/http/arn}
   serverless-offline:
@@ -57,3 +57,6 @@ custom:
 functions:
   # Exchange Rate
   - ${file(${self:custom.funcDir}/exchangeRate/_handlers.yml)}
+
+  # Product
+  - ${file(${self:custom.funcDir}/product/_handlers.yml)}

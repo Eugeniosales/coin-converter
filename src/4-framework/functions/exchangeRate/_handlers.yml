@@ -14,7 +14,7 @@ getExchangeRate:
         priority: 1
         conditions:
           method: GET
-          path: /${self:custom.baseApi}/exchangerate
+          path: /${self:custom.baseApiInternal}/exchangerate
           request:
             parameters:
               querystrings:
