@@ -16,12 +16,24 @@ resource "aws_dynamodb_table" "product" {
   range_key = "id"
 
   attribute {
-    name = "baseCurrency"
+    name = "category"
     type = "S"
   }
 
   attribute {
     name = "id"
     type = "S"
+  }
+
+  attribute {
+    name = "baseCurrency"
+    type = "S"
+  }
+
+  global_secondary_index {
+    name               = "CategoryBaseCurrencyIndex"
+    hash_key           = "Category"
+    range_key          = "baseCurrency"
+    projection_type    = "ALL"
   }
 }
