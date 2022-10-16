@@ -35,6 +35,10 @@ const schemaDefinition: SchemaDefinition = {
     type: Array,
     required: true
   },
+  imageUrl: {
+    type: String,
+    required: true
+  },
   currency: {
     type: String,
     required: true,

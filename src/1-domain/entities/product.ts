@@ -8,5 +8,6 @@ export interface Product {
   promotionalPrice: number
   rating: number
   colors: string[]
+  imageUrl: string
   currency: CurrencyEnum
 }
