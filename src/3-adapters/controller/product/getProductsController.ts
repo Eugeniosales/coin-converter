@@ -25,13 +25,17 @@ export class GetProductsController extends ControllerBase<InputGetProducts, Outp
       )
 
       const products: Product[] = await getProductsUseCase.execute(input)
-
+      console.log(`${logPrefix} :: products`, products)
       console.log(`${logPrefix} :: end`)
 
       return {
-        httpCode: 200,
-        status: 'success',
-        data: { products }
+        headers: {
+          'Content-Type': 'application/json',
+          'Access-Control-Allow-Methods': '*',
+          'Access-Control-Allow-Origin': '*'
+        },
+        statusCode: 200,
+        body: JSON.stringify({ products })
       }
 
     } catch (error) {

@@ -16,8 +16,8 @@ export class ExchangeRateInternalService implements IExchangeRateInternalService
         }
       })
 
-      console.log(`${logPrefix} :: success ::`, { data: response.data })
-      return response.data
+      console.log(`${logPrefix} :: success ::`, { data: response.data.exchangeRate })
+      return response.data.exchangeRate
     } catch (error) {
       console.error(`${logPrefix} :: error ::`, error)
       throw error

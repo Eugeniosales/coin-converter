@@ -34,7 +34,7 @@ export class GetProductsUseCase {
 
   private async calculatePriceByLatestCurrentExchangeRate (products: Product[], originCurrency: CurrencyEnum, targetCurrency: CurrencyEnum | undefined): Promise<Product[]> {
     const exchangeRate = await this.exchangeRateInternalService.get(originCurrency)
-    console.log('calculatePriceByLatestCurrentExchangeRate ::', { exchangeRate })
+    console.log('calculatePriceByLatestCurrentExchangeRate ::', exchangeRate)
 
     const targetCurrencyExchangeRate = exchangeRate.rates[targetCurrency || originCurrency]
 

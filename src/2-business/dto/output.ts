@@ -3,6 +3,8 @@ export interface Output<T> {
   message?: string
   code?: string
   httpCode?: number
+  statusCode?: number
   data?: T
+  body?: string
   headers?: any
 }

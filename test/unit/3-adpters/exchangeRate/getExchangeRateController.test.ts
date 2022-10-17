@@ -52,9 +52,8 @@ describe('UpdateExchangeRateController', () => {
     const response = await controller.run(inputMock)
 
     expect(response).toEqual({
-      httpCode: 200,
-      status: 'success',
-      data: { exchangeRate: exchangeRateMock }
+      statusCode: 200,
+      body: JSON.stringify({ exchangeRate: exchangeRateMock })
     })
   })
 })

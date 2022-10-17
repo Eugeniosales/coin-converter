@@ -27,9 +27,8 @@ export class GetExchangeRateController extends ControllerBase<InputGetExchangeRa
       console.log(`${logPrefix} :: end`)
 
       return {
-        httpCode: 200,
-        status: 'success',
-        data: { exchangeRate }
+        statusCode: 200,
+        body: JSON.stringify({ exchangeRate })
       }
 
     } catch (error) {
