@@ -31,3 +31,9 @@ variable "SG_ID" {
   description = "security group id"
   default     = null
 }
+
+variable "EXCHANGE_RATE_EXTERNAL_TOKEN" {
+  type        = string
+  description = "Exchange Rate external API Token"
+  default     = null
+}

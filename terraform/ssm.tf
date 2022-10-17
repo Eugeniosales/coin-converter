@@ -8,7 +8,7 @@ resource "aws_ssm_parameter" "update-exchange-rate-queue-arn-ssm" {
 resource "aws_ssm_parameter" "exchange-rate-api-token-ssm" {
   name  = "/exchangeRate/infra/api/exchangeRate/token"
   type  = "String"
-  value = "custom"
+  value = var.EXCHANGE_RATE_EXTERNAL_TOKEN
   overwrite = true
 }
 
