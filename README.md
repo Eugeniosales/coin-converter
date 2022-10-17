@@ -40,10 +40,10 @@ A utlização da API de produtos pode ser verificada na wiki na página: [Docume
 3. Para testes, foram realizados testes unitários nas camadas de [business](./src/2-business) e [adapters](./src/3-adapters)
 ## Infra
 
-* A AWS foi a cloud utilizada para o provisionamento de todos os recursos
-* Para o provionamento e Configuração das Lambdas foi utilizado o Serverless Framework
-* Os demais recursos da AWS foram provisados com o Terraform
-* O CI/CD foi configurado com o Github Pipelines
+* A AWS foi o serviço de cloud utilizado para o provisionamento dos recursos
+* Para o provionamento e Configuração das Lambdas foi utilizado o [Serverless Framework](./serverless.yml)
+* Os demais recursos da AWS foram provisados com o [Terraform](./terraform)
+* O CI/CD foi configurado com o [Github Pipelines](./.github)
 
 ## Referências
 
