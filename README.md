@@ -13,7 +13,7 @@ Para organização do problema, foram abertas as seguintes issues, onde na descr
 1. [Configuração inicial do projeto](https://github.com/Eugeniosales/eng-gruposbf-backend-typescript/issues/1)
 2. [Documentação](https://github.com/Eugeniosales/eng-gruposbf-backend-typescript/issues/2)
 3. [Job para obtenção das taxas de câmbio em tempo real da API externa Exchange Rate](https://github.com/Eugeniosales/eng-gruposbf-backend-typescript/issues/3)
-4. [Microsserviço para consulta da taxas de câmbio](https://github.com/Eugeniosales/eng-gruposbf-backend-typescript/issues/4)
+4. [Microsserviço para consulta da taxas de câmbio salvas (cacheadas) na tabela ExchangeRate no DynamoDB](https://github.com/Eugeniosales/eng-gruposbf-backend-typescript/issues/4)
 5. [Microsserviço para listagem de produtos com a moeda corrente requerida](https://github.com/Eugeniosales/eng-gruposbf-backend-typescript/issues/6)
 
 ## Documentação da API
