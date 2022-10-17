@@ -37,3 +37,14 @@ resource "aws_dynamodb_table" "product" {
     projection_type    = "ALL"
   }
 }
+
+resource "aws_dynamodb_table" "circuit-breaker" {
+  name = "CircuitBreaker"
+  billing_mode = "PAY_PER_REQUEST"
+  hash_key = "key"
+
+  attribute {
+    name = "key"
+    type = "S"
+  }
+}
