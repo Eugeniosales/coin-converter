@@ -1,0 +1,3 @@
+export enum CircuitBreakerEnum {
+    EXCHANGE_RATE_EXTERNAL_API = 'EXCHANGE_RATE_EXTERNAL_API'
+}

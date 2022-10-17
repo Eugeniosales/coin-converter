@@ -4,6 +4,7 @@ import { UpdateExchangeRateUseCase } from '../../../../src/2-business/useCases/e
 import { IExchangeRateRepository } from '../../../../src/2-business/repositories/iExchangeRateRepository'
 import { IExchangeRateService } from '../../../../src/2-business/services/iExchangeRateService'
 import { CurrencyEnum } from '../../../../src/2-business/enums/currencyEnum'
+import { CircuitBreakerData, ICircuitBreaker } from '../../../../src/2-business/utils/circuitBreaker'
 
 describe('UpdateExchangeRateUseCase', () => {
   const exchangeRateMock: ExchangeRate = {
@@ -35,8 +36,20 @@ describe('UpdateExchangeRateUseCase', () => {
     }
   }
 
+  const circuitBreakerMock: CircuitBreakerData = {
+    key: 'EXCHANGE_RATE_EXTERNAL_API',
+    options: {
+      closedBreakerTimeoutInMs: 300000,
+      minFailedRequestThreshold: 1,
+      openBreakerTimeoutInMs: 120000
+    },
+    nextAvailabilityCheckTimestamp: 1666024304,
+    state: 'OPENED'
+  } as CircuitBreakerData
+
   let exchangeRateRepository: IExchangeRateRepository
   let exchangeRateService: IExchangeRateService
+  let circuitBreaker: ICircuitBreaker
 
   const setMocks = () => {
     exchangeRateRepository = {
@@ -45,6 +58,13 @@ describe('UpdateExchangeRateUseCase', () => {
     }
     exchangeRateService = {
       getLatestRates: jest.fn().mockResolvedValue(exchangeRateResponseMock)
+    }
+    circuitBreaker = {
+      get: jest.fn(),
+      fire: jest.fn(),
+      sendFailObservabilityEvent: jest.fn(),
+      sendSuccessObservabilityEvent: jest.fn(),
+      checkState: jest.fn().mockResolvedValue(true)
     }
   }
 
@@ -55,7 +75,8 @@ describe('UpdateExchangeRateUseCase', () => {
   test('Success::should update the exchange rates successfully', async () => {
     const useCase = new UpdateExchangeRateUseCase(
 			exchangeRateRepository,
-			exchangeRateService
+			exchangeRateService,
+      circuitBreaker
 		)
 
     await expect(useCase.execute()).resolves.not.toThrow()
@@ -70,7 +91,8 @@ describe('UpdateExchangeRateUseCase', () => {
 
     const useCase = new UpdateExchangeRateUseCase(
 			exchangeRateRepository,
-			exchangeRateService
+			exchangeRateService,
+      circuitBreaker
 		)
 
     await expect(useCase.execute()).rejects.toThrow()

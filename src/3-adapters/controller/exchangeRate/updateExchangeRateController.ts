@@ -3,11 +3,13 @@ import { IExchangeRateService } from '../../../2-business/services/iExchangeRate
 import { UpdateExchangeRateUseCase } from '../../../2-business/useCases/exchangeRate/updateExchangeRateUseCase'
 import { ControllerBase } from '../../controllerBase'
 import { Output } from '../../../2-business/dto/output'
+import { ICircuitBreaker } from '../../../2-business/utils/circuitBreaker'
 
 export class UpdateExchangeRateController extends ControllerBase<void, void> {
   constructor (
       private readonly exchangeRateRepository: IExchangeRateRepository,
-      private readonly exchangeRateService: IExchangeRateService
+      private readonly exchangeRateService: IExchangeRateService,
+      private readonly circuitBreaker: ICircuitBreaker
   ) { super() }
 
   async run (): Promise<Output<void>> {
@@ -17,7 +19,8 @@ export class UpdateExchangeRateController extends ControllerBase<void, void> {
     try {
       const updateExchangeRateUseCase = new UpdateExchangeRateUseCase(
         this.exchangeRateRepository,
-        this.exchangeRateService
+        this.exchangeRateService,
+        this.circuitBreaker
       )
 
       await updateExchangeRateUseCase.execute()

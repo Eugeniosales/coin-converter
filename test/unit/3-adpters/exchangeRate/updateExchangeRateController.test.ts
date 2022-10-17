@@ -2,6 +2,7 @@ import { UpdateExchangeRateController } from '../../../../src/3-adapters/control
 import { IExchangeRateRepository } from '../../../../src/2-business/repositories/iExchangeRateRepository'
 import { IExchangeRateService } from '../../../../src/2-business/services/iExchangeRateService'
 import { ILatestRatesResponse } from '../../../../src/1-domain/models/iExchangeRateResponse'
+import { ICircuitBreaker, CircuitBreakerState, CircuitBreakerData } from '../../../../src/2-business/utils/circuitBreaker'
 
 jest.mock('../../../../src/2-business/useCases/exchangeRate/updateExchangeRateUseCase')
 
@@ -22,8 +23,20 @@ describe('UpdateExchangeRateController', () => {
     }
   }
 
+  const circuitBreakerMock: CircuitBreakerData = {
+    key: 'EXCHANGE_RATE_EXTERNAL_API',
+    options: {
+      closedBreakerTimeoutInMs: 300000,
+      minFailedRequestThreshold: 1,
+      openBreakerTimeoutInMs: 120000
+    },
+    nextAvailabilityCheckTimestamp: 1666024304,
+    state: CircuitBreakerState.OPENED
+  }
+
   let exchangeRateRepository: IExchangeRateRepository
   let exchangeRateService: IExchangeRateService
+  let circuitBreaker: ICircuitBreaker
   let UpdateExchangeRateUseCase = jest.fn()
 
   const setMocks = () => {
@@ -33,6 +46,13 @@ describe('UpdateExchangeRateController', () => {
     }
     exchangeRateService = {
       getLatestRates: jest.fn().mockResolvedValue(exchangeRateResponseMock)
+    }
+    circuitBreaker = {
+      get: jest.fn(),
+      fire: jest.fn(),
+      sendFailObservabilityEvent: jest.fn(),
+      sendSuccessObservabilityEvent: jest.fn(),
+      checkState: jest.fn().mockResolvedValue(true)
     }
     UpdateExchangeRateUseCase.mockClear()
   }
@@ -49,7 +69,8 @@ describe('UpdateExchangeRateController', () => {
     })
     const controller = new UpdateExchangeRateController(
       exchangeRateRepository,
-      exchangeRateService
+      exchangeRateService,
+      circuitBreaker
     )
 
     await expect(controller.run()).resolves.not.toThrow()
