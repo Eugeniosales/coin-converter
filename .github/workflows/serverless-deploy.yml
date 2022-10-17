@@ -1,4 +1,4 @@
-name: serverless-deploy
+name: Serverless-deploy CD
 
 on:
   push:
