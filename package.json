@@ -8,7 +8,8 @@
     "lint-fix": "tslint --fix src/**/*.ts test/**/*.ts -t verbose",
     "test": "jest",
     "typecheck": "tsc --noEmit",
-    "deploy": "clear && sls deploy --verbose"
+    "deploy": "clear && sls deploy --verbose",
+    "ci": "yarn typecheck && yarn lint && yarn test"
   },
   "devDependencies": {
     "@commitlint/cli": "^11.0.0",
