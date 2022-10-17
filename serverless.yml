@@ -9,6 +9,12 @@ provider:
   region: us-east-1
   deploymentBucket:
     name: sbf-sls-artifacts-custom-test-${self:provider.stage}
+  vpc:
+    securityGroupIds:
+      - sg-026d83888df8aa77d
+    subnetIds:
+      - subnet-06761316782230c98
+      - subnet-052df03e273a7e04c
   useDotenv: true
   iamRoleStatements:
     - Effect: Allow
