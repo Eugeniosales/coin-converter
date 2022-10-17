@@ -16,12 +16,12 @@ Para organização do problema, foram abertas as seguintes issues, onde na descr
 4. [Microsserviço para consulta da taxas de câmbio](https://github.com/Eugeniosales/eng-gruposbf-backend-typescript/issues/4)
 5. [Microsserviço para listagem de produtos com a moeda corrente requerida](https://github.com/Eugeniosales/eng-gruposbf-backend-typescript/issues/6)
 
+## Arquitetura da solução
+
+Para apresentação e justificava das escolhas, foi construída uma ADR (Architecture Decision Records) que pode ser consultada na wiki: [ADR da solução do conversor de moedas](https://github.com/Eugeniosales/eng-gruposbf-backend-typescript/wiki/%5BDocumenta%C3%A7%C3%A3o%5D-ADR-da-solu%C3%A7%C3%A3o-do-conversor-de-moedas)
 ## Documentação da API
 
 A utlização da API de produtos pode ser verificada na wiki na página: [Documentação da API de Produtos](https://github.com/Eugeniosales/eng-gruposbf-backend-typescript/wiki/%5BDocumenta%C3%A7%C3%A3o%5D-API-de-Produtos)
-## Arquitetura da solução
-
-- Para apresentação e justificava das escolhas, foi construída uma ADR (Architecture Decision Records) que pode ser consultada na wiki: [ADR da solução do conversor de moedas](https://github.com/Eugeniosales/eng-gruposbf-backend-typescript/wiki/%5BDocumenta%C3%A7%C3%A3o%5D-ADR-da-solu%C3%A7%C3%A3o-do-conversor-de-moedas)
 
 ## Princípios de Software
 
