@@ -37,7 +37,7 @@ A utlização da API de produtos pode ser verificada na wiki na página: [Docume
 * [adapters](./src/3-adapters): Interface adapters
 * [framework](./src/4-framework): Framework & Drivers
 
-2. Além disso foram empregados princípios do Clean Code, Solid e Design Patterns (Circuit Breaker Pattern, Repository Pattern e Dependency Injection)
+2. Além disso foram empregados princípios do Clean Code, Solid (Single responsibility principle e Dependency inversion) e Design Patterns (Circuit Breaker Pattern, Repository Pattern e Dependency Injection)
 3. Para testes, foram realizados testes unitários nas camadas de [business](./src/2-business) e [adapters](./src/3-adapters)
 ## Infra
 
